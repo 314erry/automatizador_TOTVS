@@ -106,6 +106,7 @@ def solicitar():
             pyautogui.press('right')
             pyautogui.press('enter')
             pyautogui.write(str(codigo))
+            pyautogui.press('enter')
             sleep(0.7)
             pyautogui.press('right')
             pyautogui.write(str(numArmazem))
