@@ -1,4 +1,5 @@
 from time import sleep
+from unidecode import unidecode
 import pyautogui
 
 def stringLinha():
@@ -117,7 +118,7 @@ def solicitar():
             sleep(0.7)
             pyautogui.press('down')
             pyautogui.press('enter')
-            pyautogui.write(descSolicit.strip().upper())
+            pyautogui.write(unicode(descSolicit.strip().upper()))
             sleep(0.7)
             pyautogui.press('enter')
             pyautogui.press('down')
