@@ -99,9 +99,9 @@ def solicitar():
     stringLinha()
 
     input("Pressione Enter para iniciar o processo de solicitação automática. Certifique-se de que a célula inicial está selecionada.")
+    sleep(5)
     i = 0
     while i < 10:
-        sleep(5)
         try:
             pyautogui.press('right')
             pyautogui.press('enter')
