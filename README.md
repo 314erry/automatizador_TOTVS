@@ -52,4 +52,4 @@ Este projeto está licenciado sob a [MIT License](LICENSE).
 
 ## Contato
 
-Para mais informações ou dúvidas, entre em contato com **Pierry Jonny**.
+Para mais informações ou dúvidas, entre em contato com **314pierry@gmail.com**.
