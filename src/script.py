@@ -17,7 +17,7 @@ def enderacamento():
                 break
             linhas.append(linha)
 
-        with open("C:/Users/jose.coutinho/Downloads/automatizador_TOTVS-main/src/numeros_series.txt", "w") as arquivo:
+        with open("C:/Users/jose.coutinho/Downloads/automatizador_TOTVS-main/src/numeros_series.txt", "w") as arquivo: # MUDAR CAMINHO
             arquivo.write("\n".join(linhas))
     except Exception as e:
         print("Erro:", e)
@@ -27,7 +27,7 @@ def enderacamento():
     input("Pressione Enter para iniciar o endereçamento. Certifique-se de que a célula inicial está selecionada.")
     try:
         sleep(5)
-        with open("C:/Users/jose.coutinho/Downloads/automatizador_TOTVS-main/src/numeros_series.txt", "r") as arquivo:
+        with open("C:/Users/jose.coutinho/Downloads/automatizador_TOTVS-main/src/numeros_series.txt", "r") as arquivo: # MUDAR CAMINHO
             series = arquivo.readlines()
             for serie in series:
                 pyautogui.press('enter')
@@ -53,16 +53,17 @@ def transferenciaMultipla():
                       '010718 = ONU FIBERHOME GPON HG6145D2 REUSO\n' 
                       '010720 = ONU HUAWEI 5.8 REF: 50083734 HW EG8145V5 - REUSO\n'
                       '000219 = APARELHO ONU - 4FE + 2FXS+ WIF\n'
+                      'Você pode digitar um dos códigos acima ou outro.'
                       '>>> ')
     stringLinha()
-    armazemOrigem = input("Digite o armazém ORIGEM das ONU's:\n80 = Cancelamento\n72 = Danificado\n>>> ")
+    armazemOrigem = input("Digite o armazém ORIGEM:\n80 = Cancelamento\n72 = Danificado\nVocê pode digitar um dos armazéns acima ou outro.\n>>> ")
     stringLinha()
-    armazemDestino = input("Digite o armazém DESTINO das ONU's:\n01 = Almoxarifado LOGA\n10 = Defeito\n>>> ")
+    armazemDestino = input("Digite o armazém DESTINO:\n01 = Almoxarifado LOGA\n10 = Defeito\nVocê pode digitar um dos armazéns acima ou outro.\n>>> ")
 
     try:
         input("Pressione Enter para iniciar a transferência automática. Certifique-se de minimizar essa aba e selecionar a célula inicial.")
         sleep(5)
-        with open("C:/Users/jose.coutinho/Downloads/automatizador_TOTVS-main/src/numeros_series.txt", "r") as arquivo:
+        with open("C:/Users/jose.coutinho/Downloads/automatizador_TOTVS-main/src/numeros_series.txt", "r") as arquivo: # MUDAR CAMINHO
             series = arquivo.readlines()
             for serie in series:
                 pyautogui.write(codigoONU)
@@ -89,6 +90,42 @@ def transferenciaMultipla():
 
     print("Números de série transferidos com sucesso!")
 
+def solicitar():
+    stringLinha()
+    codigo = input('Digite o código que deseja realizar a solicitação: ')
+    numArmazem = input(f"Digite o armazém onde está localizado o código {codigo}: ")
+    descSolicit = input('Digite a descrição da sua solicitação: ')
+
+    for codigo in range(10):
+        input("Pressione Enter para iniciar o processo de solicitação automática. Certifique-se de que a célula inicial está selecionada.")
+        sleep(5)
+        try:
+            pyautogui.press('right')
+            pyautogui.press('enter')
+            pyautogui.write(codigo.strip())
+            sleep(0.7)
+            pyautogui.press('right')
+            pyautogui.write(numArmazem.strip())
+            sleep(0.7)
+            pyautogui.press('right')
+            pyautogui.write('1')
+            pyautogui.press('down')
+            sleep(0.7)
+            pyautogui.press('right', presses=3)
+            pyautogui.write('0101004')
+            sleep(0.7)
+            pyautogui.press('down')
+            pyautogui.press('enter')
+            pyautogui.write(descSolicit.strip())
+            sleep(0.7)
+            pyautogui.press('enter')
+            pyautogui.press('down')
+            sleep(0.7)
+        except Exception as e:
+            print("Erro:", e)
+            
+    print("Solicitações realizadas com sucesso!")
+
 def menu():
     while True:
         stringLinha()
@@ -99,13 +136,14 @@ def menu():
         print("  ██║     ██║   ██║██║   ██║██╔══██║")
         print("  ███████╗╚██████╔╝╚██████╔╝██║  ██║")
         print("  ╚══════╝ ╚═════╝  ╚═════╝ ╚═╝  ╚═╝")
-        print("          Automatizador TOTVS         ")
+        print("      Automatizador TOTVS v1.0.2        ")
         print("       Criado por: Pierry Jonny    ")
         stringLinha()
         print()
         print("Menu:")
         print("1. Endereçamento")
         print("2. Transferência Múltipla")
+        print("3. Solicitar")
         print("0. Sair")
         opcao = input("Escolha uma opção: ")
 
@@ -113,6 +151,8 @@ def menu():
             enderacamento()
         elif opcao == "2":
             transferenciaMultipla()
+        elif opcao == "3":
+            solcitar()
         elif opcao == "0":
             print("Saindo...")
             break
