@@ -98,9 +98,9 @@ def solicitar():
     descSolicit = input('Digite a descrição da sua solicitação: ')
     stringLinha()
 
+    input("Pressione Enter para iniciar o processo de solicitação automática. Certifique-se de que a célula inicial está selecionada.")
     i = 0
     while i < 10:
-        input("Pressione Enter para iniciar o processo de solicitação automática. Certifique-se de que a célula inicial está selecionada.")
         sleep(5)
         try:
             pyautogui.press('right')
