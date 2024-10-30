@@ -18,7 +18,7 @@ Para executar este programa, você precisa ter o seguinte instalado em sua máqu
 - **Biblioteca PyAutoGUI**: Para instalação, execute o seguinte comando no seu terminal ou prompt de comando:
 
   ```bash
-  py -m pip install pyautogui
+  python -m pip install pyautogui
   ```
 
 ## Instruções de Uso
