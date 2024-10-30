@@ -97,8 +97,9 @@ def solicitar():
     numArmazem = input(f"Digite o armazém onde está localizado o código {codigo}: ")
     descSolicit = input('Digite a descrição da sua solicitação: ')
     stringLinha()
-    
-    for codigo in range(10):
+
+    i = 0
+    while i < 10:
         input("Pressione Enter para iniciar o processo de solicitação automática. Certifique-se de que a célula inicial está selecionada.")
         sleep(5)
         try:
@@ -125,6 +126,7 @@ def solicitar():
             sleep(0.7)
         except Exception as e:
             print("Erro:", e)
+        i += 1
             
     print("Solicitações realizadas com sucesso!")
 
