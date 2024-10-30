@@ -17,7 +17,7 @@ def enderacamento():
                 break
             linhas.append(linha)
 
-        with open("numeros_series.txt", "w") as arquivo:
+        with open("C:/Users/jose.coutinho/Downloads/automatizador_TOTVS-main/src/numeros_series.txt", "w") as arquivo:
             arquivo.write("\n".join(linhas))
     except Exception as e:
         print("Erro:", e)
@@ -27,18 +27,19 @@ def enderacamento():
     input("Pressione Enter para iniciar o endereçamento. Certifique-se de que a célula inicial está selecionada.")
     try:
         sleep(5)
-        with open("numeros_series.txt", "r") as arquivo:
+        with open("C:/Users/jose.coutinho/Downloads/automatizador_TOTVS-main/src/numeros_series.txt", "r") as arquivo:
             series = arquivo.readlines()
             for serie in series:
                 pyautogui.press('enter')
                 pyautogui.write(serie.strip())
-                sleep(0.2)
+                pyautogui.press('enter')
+                sleep(0.7)
                 pyautogui.write("1")
-                sleep(0.2)
+                sleep(0.7)
                 pyautogui.press('down', presses=2)
-                sleep(0.2)
+                sleep(0.7)
                 pyautogui.press('right', presses=3)
-                sleep(0.5)
+                sleep(0.7)
     except Exception as e:
         print("Erro:", e)
     
@@ -60,7 +61,7 @@ def transferenciaMultipla():
     try:
         input("Pressione Enter para iniciar a transferência automática. Certifique-se de minimizar essa aba e selecionar a célula inicial.")
         sleep(5)
-        with open("numeros_series.txt", "r") as arquivo:
+        with open("C:/Users/jose.coutinho/Downloads/automatizador_TOTVS-main/src/numeros_series.txt", "r") as arquivo:
             series = arquivo.readlines()
             for serie in series:
                 pyautogui.write(codigoONU)
