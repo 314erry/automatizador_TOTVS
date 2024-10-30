@@ -32,6 +32,8 @@ Para executar este programa, você precisa ter o seguinte instalado em sua máqu
    python script.py
    ```
 
+   Ou você pode rodar o programa clicando duas vezes no `script.py` e selecionando abrir com o Python.
+
 5. **Siga as instruções no menu**: O programa irá apresentar um menu com opções para endereçamento e transferência múltipla.
 
 ## Como Funciona
