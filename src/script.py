@@ -95,17 +95,18 @@ def solicitar():
     codigo = input('Digite o código que deseja realizar a solicitação: ')
     numArmazem = input(f"Digite o armazém onde está localizado o código {codigo}: ")
     descSolicit = input('Digite a descrição da sua solicitação: ')
-
+    stringLinha()
+    
     for codigo in range(10):
         input("Pressione Enter para iniciar o processo de solicitação automática. Certifique-se de que a célula inicial está selecionada.")
         sleep(5)
         try:
             pyautogui.press('right')
             pyautogui.press('enter')
-            pyautogui.write(codigo.strip())
+            pyautogui.write(codigo)
             sleep(0.7)
             pyautogui.press('right')
-            pyautogui.write(numArmazem.strip())
+            pyautogui.write(numArmazem)
             sleep(0.7)
             pyautogui.press('right')
             pyautogui.write('1')
@@ -116,7 +117,7 @@ def solicitar():
             sleep(0.7)
             pyautogui.press('down')
             pyautogui.press('enter')
-            pyautogui.write(descSolicit.strip())
+            pyautogui.write(descSolicit.strip().upper())
             sleep(0.7)
             pyautogui.press('enter')
             pyautogui.press('down')
