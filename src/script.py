@@ -136,7 +136,7 @@ def menu():
         print("  ██║     ██║   ██║██║   ██║██╔══██║")
         print("  ███████╗╚██████╔╝╚██████╔╝██║  ██║")
         print("  ╚══════╝ ╚═════╝  ╚═════╝ ╚═╝  ╚═╝")
-        print("      Automatizador TOTVS v1.0.2        ")
+        print("      Automatizador TOTVS v1.1.2        ")
         print("       Criado por: Pierry Jonny    ")
         stringLinha()
         print()
@@ -152,7 +152,11 @@ def menu():
         elif opcao == "2":
             transferenciaMultipla()
         elif opcao == "3":
-            solcitar()
+            solicitar()
+        elif opcao == "4":
+            baixar()
+        elif opcao == "5":
+            salvarNumSeries()
         elif opcao == "0":
             print("Saindo...")
             break
