@@ -48,10 +48,11 @@ def enderacamento():
 def transferenciaMultipla():
     stringLinha()
     codigoONU = input('Digite o código da ONU que deseja transferir:\n'
-                      '010716 = Fiberhome com antena REUSO\n'
-                      '010717 = Fiberhome sem antena REUSO\n' 
-                      '010720 = Huawei REUSO\n'
-                      '000219 = Fiberhome branca ANTIGA\n'
+                      '010716 = ONU FIBERHOME GPON HG6143D 5G + WIFI - REUSO\n'
+                      '010717 = ONU FIBERHOME GPON HG6143D3  5G + WIFI - REUSO\n' 
+                      '010718 = ONU FIBERHOME GPON HG6145D2 REUSO\n' 
+                      '010720 = ONU HUAWEI 5.8 REF: 50083734 HW EG8145V5 - REUSO\n'
+                      '000219 = APARELHO ONU - 4FE + 2FXS+ WIF\n'
                       '>>> ')
     stringLinha()
     armazemOrigem = input("Digite o armazém ORIGEM das ONU's:\n80 = Cancelamento\n72 = Danificado\n>>> ")
