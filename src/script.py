@@ -120,7 +120,7 @@ def solicitar():
             sleep(0.7)
             pyautogui.press('down')
             pyautogui.press('enter')
-            pyautogui.write(unicode(descSolicit.strip().upper()))
+            pyautogui.write(unidecode(descSolicit.strip().upper()))
             sleep(0.7)
             pyautogui.press('enter')
             pyautogui.press('down')
