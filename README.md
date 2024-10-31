@@ -15,11 +15,10 @@ O **Automatizador TOTVS** é um programa desenvolvido em Python que tem como obj
 Para executar este programa, você precisa ter o seguinte instalado em sua máquina:
 
 - **Python 3**: [Download Python](https://www.python.org/downloads/)
-- **Biblioteca PyAutoGUI**: Para instalação, execute o seguinte comando no seu terminal ou prompt de comando:
+- **Bibliotecas PyAutoGUI e Unidecode**: Para instalação, execute o seguinte comando no seu terminal ou prompt de comando:
 
   ```bash
-  python -m pip install pyautogui
-  ```
+  python -m pip install pyautogui unidecode
 
 ## Instruções de Uso
 
