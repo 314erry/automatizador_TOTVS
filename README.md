@@ -38,12 +38,9 @@ Para executar este programa, você precisa ter o seguinte instalado em sua máqu
 ## Como Funciona
 
 - O usuário pode inserir novos números de série para endereçamento.
-- O programa solicita informações sobre a transferência de ONU's, como códigos e armazéns.
+- O programa solicita informações sobre a transferência e baixa de ONU's, como códigos e armazéns.
+- O usuário pode salvar novos números de série no programa, persistindo os dados.
 - As operações são realizadas automaticamente, permitindo que o usuário minimize a janela e prepare-se para o próximo passo.
-
-## Contribuições
-
-Contribuições são bem-vindas! Se você deseja colaborar com o projeto, sinta-se à vontade para fazer um fork do repositório e enviar um pull request.
 
 ## Licença
 
