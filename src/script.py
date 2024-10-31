@@ -1,34 +1,19 @@
 from time import sleep
 from unidecode import unidecode
 import pyautogui
+import os
 
 def stringLinha():
-    print('-'*40)
+    print('-' * 40)
 
 def enderacamento():
-    stringLinha()
-    print("Digite os novos números de série para endereçar:")
-    print("(Apenas 1 nº de série por linha e pressione Enter duas vezes para finalizar):")
-
-    try:
-        linhas = []
-        while True:
-            linha = input()
-            if linha == "":
-                break
-            linhas.append(linha)
-
-        with open("C:/Users/jose.coutinho/Downloads/automatizador_TOTVS-main/src/numeros_series.txt", "w") as arquivo: # MUDAR CAMINHO
-            arquivo.write("\n".join(linhas))
-    except Exception as e:
-        print("Erro:", e)
-    print("Numéros de série salvos com sucesso!")
+    salvarNumSeries()
 
     stringLinha()
     input("Pressione Enter para iniciar o endereçamento. Certifique-se de que a célula inicial está selecionada.")
+    sleep(5)
     try:
-        sleep(5)
-        with open("C:/Users/jose.coutinho/Downloads/automatizador_TOTVS-main/src/numeros_series.txt", "r") as arquivo: # MUDAR CAMINHO
+        with open(caminho_arquivo, "r") as arquivo:
             series = arquivo.readlines()
             for serie in series:
                 pyautogui.press('enter')
@@ -64,7 +49,8 @@ def transferenciaMultipla():
     try:
         input("Pressione Enter para iniciar a transferência automática. Certifique-se de minimizar essa aba e selecionar a célula inicial.")
         sleep(5)
-        with open("C:/Users/jose.coutinho/Downloads/automatizador_TOTVS-main/src/numeros_series.txt", "r") as arquivo: # MUDAR CAMINHO
+        caminho_arquivo = os.path.join(os.environ['USERPROFILE'], "Downloads", "automatizador_TOTVS-main", "src", "numeros_series.txt")
+        with open(caminho_arquivo, "r") as arquivo:
             series = arquivo.readlines()
             for serie in series:
                 pyautogui.write(codigoONU)
@@ -130,6 +116,51 @@ def solicitar():
         i += 1
             
     print("Solicitações realizadas com sucesso!")
+    
+def baixar():
+    salvarNumSeries()
+        
+    print("Números de série salvos com sucesso!")
+    stringLinha()
+    
+    input("Pressione Enter para iniciar a baixa. Certifique-se de que a célula 'Num de Serie' está selecionada.")
+    sleep(5)
+    try:
+        with open(caminho_arquivo, "r") as arquivo:
+            series = arquivo.readlines()
+            for serie in series:
+                pyautogui.press('enter')
+                pyautogui.write(serie.strip())
+                pyautogui.press('enter')
+                sleep(0.7)
+                pyautogui.press('down')
+                pyautogui.press('left')
+                sleep(0.7)
+    except Exception as e:
+        print("Erro:", e)
+        
+    print("Baixas realizadas com sucesso!")
+    
+def salvarNumSeries():
+    stringLinha()
+    print("Digite os novos números de série para salvar:")
+    print("(Apenas 1 nº de série por linha e pressione Enter duas vezes para finalizar):")
+
+    try:
+        linhas = []
+        while True:
+            linha = input()
+            if linha == "":
+                break
+            linhas.append(linha)
+
+        caminho_arquivo = os.path.join(os.environ['USERPROFILE'], "Downloads", "automatizador_TOTVS-main", "src", "numeros_series.txt")
+        with open(caminho_arquivo, "w") as arquivo:
+            arquivo.write("\n".join(linhas))
+    except Exception as e:
+        print("Erro:", e)
+        
+    print("Números de série salvos com sucesso!")
 
 def menu():
     while True:
@@ -141,7 +172,7 @@ def menu():
         print("  ██║     ██║   ██║██║   ██║██╔══██║")
         print("  ███████╗╚██████╔╝╚██████╔╝██║  ██║")
         print("  ╚══════╝ ╚═════╝  ╚═════╝ ╚═╝  ╚═╝")
-        print("      Automatizador TOTVS v1.1.2        ")
+        print("      Automatizador TOTVS v1.4.3        ")
         print("       Criado por: Pierry Jonny    ")
         stringLinha()
         print()
@@ -149,6 +180,8 @@ def menu():
         print("1. Endereçamento")
         print("2. Transferência Múltipla")
         print("3. Solicitar")
+        print("4. Baixar Pré-Requisitos")
+        print("5. Salvar Nº Série")
         print("0. Sair")
         opcao = input("Escolha uma opção: ")
 
