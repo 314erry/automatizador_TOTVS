@@ -12,6 +12,7 @@ def enderacamento():
     stringLinha()
     input("Pressione Enter para iniciar o endereçamento. Certifique-se de que a célula inicial está selecionada.")
     sleep(5)
+    caminho_arquivo = os.path.join(os.environ['USERPROFILE'], "Downloads", "automatizador_TOTVS-main", "src", "numeros_series.txt")
     try:
         with open(caminho_arquivo, "r") as arquivo:
             series = arquivo.readlines()
@@ -125,6 +126,7 @@ def baixar():
     
     input("Pressione Enter para iniciar a baixa. Certifique-se de que a célula 'Num de Serie' está selecionada.")
     sleep(5)
+    caminho_arquivo = os.path.join(os.environ['USERPROFILE'], "Downloads", "automatizador_TOTVS-main", "src", "numeros_series.txt")
     try:
         with open(caminho_arquivo, "r") as arquivo:
             series = arquivo.readlines()
