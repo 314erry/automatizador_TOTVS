@@ -3,12 +3,14 @@
 
 ## Descrição
 
-O **Automatizador TOTVS** é um programa desenvolvido em Python que tem como objetivo automatizar os processos de endereçamento e transferência múltipla de códigos ONU's em seus respectivos armazéns dentro do software TOTVS. Este processo automatizado visa aumentar a eficiência e reduzir o tempo gasto nas operações manuais relacionadas a esses processos.
+O **Automatizador TOTVS** é um programa desenvolvido em Python que tem como objetivo automatizar os processos de endereçamento, transferência múltipla, solicitação e baixa de pré-requisitos de códigos ONU's em seus respectivos armazéns dentro do software TOTVS. Este processo automatizado visa aumentar a eficiência e reduzir o tempo gasto nas operações manuais relacionadas a esses processos.
 
 ## Funcionalidades
 
 - **Endereçamento**: Permite a inserção de novos números de série e realiza o endereçamento automático no sistema TOTVS.
-- **Transferência Múltipla**: Facilita a transferência de códigos ONU para diferentes armazéns, automatizando as interações necessárias no software.
+- **Transferência Múltipla**: Facilita a transferência de códigos ONU para diferentes armazéns, automatizando as interações necessárias no TOTVS.
+- **Solicitar**: Permite a solicitação automática de baixa de ONU's no sistema TOTVS.
+- **Baixar pré-requisitos**: Facilita a baixa de números de série ONU para diferentes armazéns, escrevendo os números de série automaticamente no TOTVS.
 
 ## Requisitos
 
