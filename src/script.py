@@ -196,7 +196,7 @@ def menu():
         print("  ███████╗╚██████╔╝╚██████╔╝██║  ██║")
         print("  ╚══════╝ ╚═════╝  ╚═════╝ ╚═╝  ╚═╝")
         print("      Automatizador TOTVS v1.5.3        ")
-        print("       Criado por: Pierry Jonny    ")
+        print("         © 2024 Pierry Jonny    ")
         print("Menu:")
         print("1. Endereçamento")
         print("2. Transferência Múltipla")
