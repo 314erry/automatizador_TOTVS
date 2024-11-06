@@ -218,7 +218,6 @@ def menu():
         elif opcao == "5":
             salvarNumSeries()
         elif opcao == "0":
-            print("Saindo...")
             break
         else:
             print("Opção inválida. Tente novamente.")
