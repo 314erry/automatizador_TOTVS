@@ -63,7 +63,7 @@ def transferenciaMultipla():
         input("Pressione Enter para iniciar a transferência automática. Certifique-se de minimizar essa aba e selecionar a célula inicial.")
         sleep(5)
         with open(caminho_arquivo, "r") as arquivo:
-            series = arquivo.readlines()
+            series = [linha.strip() for linha in arquivo if linha.strip()]
             if not series:
                 print("Salve os Nº de Série para transferir. Tente Novamente.")
                 return
