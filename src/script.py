@@ -190,9 +190,12 @@ def listarNumSerie():
     try:
         with open(caminho_arquivo, "r") as arquivo:
             series = arquivo.readlines()
-            print("\nNúmeros de Série no arquivo:")
-            for serie in series:
-                print(serie.strip())
+            if not series:
+                print("Não há nenhum Nº de Série salvo.")
+            else:
+                print("\nNúmeros de Série no arquivo:")
+                for serie in series:
+                    print(serie.strip())
     except Exception as e:
         print("Erro ao listar números de série:", e)
 
