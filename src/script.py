@@ -185,6 +185,17 @@ def salvarNumSeries():
         
     print("Números de série salvos com sucesso!")
 
+def listarNumSerie():
+    caminho_arquivo = os.path.join(os.environ['USERPROFILE'], "Downloads", "automatizador_TOTVS-main", "src", "numeros_series.txt")
+    try:
+        with open(caminho_arquivo, "r") as arquivo:
+            series = arquivo.readlines()
+            print("\nNúmeros de Série no arquivo:")
+            for serie in series:
+                print(serie.strip())
+    except Exception as e:
+        print("Erro ao listar números de série:", e)
+
 def menu():
     while True:    
         stringLinha()
@@ -195,7 +206,7 @@ def menu():
         print("  ██║     ██║   ██║██║   ██║██╔══██║")
         print("  ███████╗╚██████╔╝╚██████╔╝██║  ██║")
         print("  ╚══════╝ ╚═════╝  ╚═════╝ ╚═╝  ╚═╝")
-        print("      Automatizador TOTVS v1.5.3        ")
+        print("      Automatizador TOTVS v1.6.3        ")
         print("         © 2024 Pierry Jonny    ")
         print()
         print("Menu:")
@@ -204,6 +215,7 @@ def menu():
         print("3. Solicitar")
         print("4. Baixar Pré-Requisitos")
         print("5. Salvar Nº Série")
+        print("6. Listar Nº Série")
         print("0. Sair")
         opcao = input("Escolha uma opção: ")
 
@@ -217,6 +229,8 @@ def menu():
             baixar()
         elif opcao == "5":
             salvarNumSeries()
+        elif opcao == "6":
+            listarNumSerie()
         elif opcao == "0":
             break
         else:
