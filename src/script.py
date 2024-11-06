@@ -175,7 +175,7 @@ def menu():
         print("  ███████╗╚██████╔╝╚██████╔╝██║  ██║")
         print("  ╚══════╝ ╚═════╝  ╚═════╝ ╚═╝  ╚═╝")
         print("      Automatizador TOTVS v1.4.3        ")
-        print("       Criado por: Pierry Jonny    ")
+        print("         © 2024 Pierry Jonny    ")
         stringLinha()
         print()
         print("Menu:")
