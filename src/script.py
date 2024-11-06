@@ -58,12 +58,15 @@ def transferenciaMultipla():
     codigoONU = input('Digite o código da ONU que deseja transferir:\n>>> ')
     armazemOrigem = input("Digite o armazém ORIGEM:\n>>> ")
     armazemDestino = input("Digite o armazém DESTINO:\n>>> ")
+    caminho_arquivo = os.path.join(os.environ['USERPROFILE'], "Downloads", "automatizador_TOTVS-main", "src", "numeros_series.txt")
     try:
         input("Pressione Enter para iniciar a transferência automática. Certifique-se de minimizar essa aba e selecionar a célula inicial.")
         sleep(5)
-        caminho_arquivo = os.path.join(os.environ['USERPROFILE'], "Downloads", "automatizador_TOTVS-main", "src", "numeros_series.txt")
         with open(caminho_arquivo, "r") as arquivo:
             series = arquivo.readlines()
+            if not series:
+                print("Salve os Nº de Série para transferir. Tente Novamente.")
+                return
             for serie in series:
                 if interromper:
                     return
@@ -176,6 +179,10 @@ def salvarNumSeries():
             if linha == "":
                 break
             linhas.append(linha)
+
+        if not linhas:
+            print("Digite os Nº de Série para salvar. Tente Novamente.")
+            return
 
         caminho_arquivo = os.path.join(os.environ['USERPROFILE'], "Downloads", "automatizador_TOTVS-main", "src", "numeros_series.txt")
         with open(caminho_arquivo, "w") as arquivo:
