@@ -3,11 +3,27 @@ from unidecode import unidecode
 import pyautogui
 import os
 import keyboard
+import threading
+
+# Variável global para controlar a execução
+interromper = False
+
+def verificar_esc():
+    global interromper
+    while True:
+        if keyboard.is_pressed("esc"):
+            interromper = True
+            print("\nProcesso interrompido pelo usuário.")
+            break
+        sleep(0.1)
 
 def stringLinha():
     print('-' * 40)
 
 def enderacamento():
+    global interromper
+    interromper = False
+    threading.Thread(target=verificar_esc, daemon=True).start()  # Inicia a thread para monitorar o "Esc"
     salvarNumSeries()
     stringLinha()
     input("Pressione Enter para iniciar o endereçamento. Certifique-se de que a célula inicial está selecionada.")
@@ -17,8 +33,7 @@ def enderacamento():
         with open(caminho_arquivo, "r") as arquivo:
             series = arquivo.readlines()
             for serie in series:
-                if keyboard.is_pressed("esc"):
-                    print("Processo interrompido pelo usuário.")
+                if interromper:
                     return
                 pyautogui.press('enter')
                 pyautogui.write(serie.strip())
@@ -36,6 +51,9 @@ def enderacamento():
     print("Números de série endereçados com sucesso!")
 
 def transferenciaMultipla():
+    global interromper
+    interromper = False
+    threading.Thread(target=verificar_esc, daemon=True).start()
     stringLinha()
     codigoONU = input('Digite o código da ONU que deseja transferir:\n>>> ')
     armazemOrigem = input("Digite o armazém ORIGEM:\n>>> ")
@@ -47,8 +65,7 @@ def transferenciaMultipla():
         with open(caminho_arquivo, "r") as arquivo:
             series = arquivo.readlines()
             for serie in series:
-                if keyboard.is_pressed("esc"):
-                    print("Processo interrompido pelo usuário.")
+                if interromper:
                     return
                 pyautogui.write(codigoONU)
                 pyautogui.press('down')
@@ -75,6 +92,9 @@ def transferenciaMultipla():
     print("Números de série transferidos com sucesso!")
 
 def solicitar():
+    global interromper
+    interromper = False
+    threading.Thread(target=verificar_esc, daemon=True).start()
     stringLinha()
     codigo = input('Digite o código que deseja realizar a solicitação: ')
     numArmazem = input(f"Digite o armazém onde está localizado o código {codigo}: ")
@@ -84,8 +104,7 @@ def solicitar():
     sleep(5)
     i = 0
     while i < 10:
-        if keyboard.is_pressed("esc"):
-            print("Processo interrompido pelo usuário.")
+        if interromper:
             return
         try:
             pyautogui.press('right')
@@ -117,6 +136,9 @@ def solicitar():
     print("Solicitações realizadas com sucesso!")
     
 def baixar():
+    global interromper
+    interromper = False
+    threading.Thread(target=verificar_esc, daemon=True).start()
     salvarNumSeries()
     print("Números de série salvos com sucesso!")
     stringLinha()
@@ -127,8 +149,7 @@ def baixar():
         with open(caminho_arquivo, "r") as arquivo:
             series = arquivo.readlines()
             for serie in series:
-                if keyboard.is_pressed("esc"):
-                    print("Processo interrompido pelo usuário.")
+                if interromper:
                     return
                 pyautogui.press('enter')
                 pyautogui.write(serie.strip())
@@ -173,7 +194,7 @@ def menu():
         print("  ██║     ██║   ██║██║   ██║██╔══██║")
         print("  ███████╗╚██████╔╝╚██████╔╝██║  ██║")
         print("  ╚══════╝ ╚═════╝  ╚═════╝ ╚═╝  ╚═╝")
-        print("      Automatizador TOTVS v1.4.3        ")
+        print("      Automatizador TOTVS v1.4.4        ")
         print("       Criado por: Pierry Jonny    ")
         print("Menu:")
         print("1. Endereçamento")
