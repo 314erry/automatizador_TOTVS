@@ -142,6 +142,27 @@ def baixar():
         
     print("Baixas realizadas com sucesso!")
 
+def salvarNumSeries():
+    stringLinha()
+    print("Digite os novos números de série para salvar:")
+    print("(Apenas 1 nº de série por linha e pressione Enter duas vezes para finalizar):")
+
+    try:
+        linhas = []
+        while True:
+            linha = input()
+            if linha == "":
+                break
+            linhas.append(linha)
+
+        caminho_arquivo = os.path.join(os.environ['USERPROFILE'], "Downloads", "automatizador_TOTVS-main", "src", "numeros_series.txt")
+        with open(caminho_arquivo, "w") as arquivo:
+            arquivo.write("\n".join(linhas))
+    except Exception as e:
+        print("Erro:", e)
+        
+    print("Números de série salvos com sucesso!")
+
 def menu():
     while True:    
         stringLinha()
