@@ -186,6 +186,7 @@ def salvarNumSeries():
     print("Números de série salvos com sucesso!")
 
 def listarNumSerie():
+    stringLinha()
     caminho_arquivo = os.path.join(os.environ['USERPROFILE'], "Downloads", "automatizador_TOTVS-main", "src", "numeros_series.txt")
     try:
         with open(caminho_arquivo, "r") as arquivo:
