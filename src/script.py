@@ -189,7 +189,7 @@ def listarNumSerie():
     caminho_arquivo = os.path.join(os.environ['USERPROFILE'], "Downloads", "automatizador_TOTVS-main", "src", "numeros_series.txt")
     try:
         with open(caminho_arquivo, "r") as arquivo:
-            series = arquivo.readlines()
+            series = [linha.strip() for linha in arquivo if linha.strip()]
             if not series:
                 print("Não há nenhum Nº de Série salvo.")
             else:
