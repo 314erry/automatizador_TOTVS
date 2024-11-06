@@ -143,9 +143,17 @@ def baixar():
     print("Baixas realizadas com sucesso!")
 
 def menu():
-    while True:
+    while True:    
         stringLinha()
-        print("Automatizador TOTVS v1.4.3")
+        print()
+        print("  ██╗      ██████╗  ██████╗  █████╗ ")
+        print("  ██║     ██╔═══██╗██╔════╝ ██╔══██╗")
+        print("  ██║     ██║   ██║██║  ███╗███████║")
+        print("  ██║     ██║   ██║██║   ██║██╔══██║")
+        print("  ███████╗╚██████╔╝╚██████╔╝██║  ██║")
+        print("  ╚══════╝ ╚═════╝  ╚═════╝ ╚═╝  ╚═╝")
+        print("      Automatizador TOTVS v1.4.3        ")
+        print("       Criado por: Pierry Jonny    ")
         print("Menu:")
         print("1. Endereçamento")
         print("2. Transferência Múltipla")
