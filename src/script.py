@@ -5,7 +5,6 @@ import os
 import keyboard
 import threading
 
-# Variável global para controlar a execução
 interromper = False
 
 def verificar_esc():
@@ -23,7 +22,7 @@ def stringLinha():
 def enderacamento():
     global interromper
     interromper = False
-    threading.Thread(target=verificar_esc, daemon=True).start()  # Inicia a thread para monitorar o "Esc"
+    threading.Thread(target=verificar_esc, daemon=True).start()
     salvarNumSeries()
     stringLinha()
     input("Pressione Enter para iniciar o endereçamento. Certifique-se de que a célula inicial está selecionada.")
@@ -54,6 +53,7 @@ def transferenciaMultipla():
     global interromper
     interromper = False
     threading.Thread(target=verificar_esc, daemon=True).start()
+    
     stringLinha()
     codigoONU = input('Digite o código da ONU que deseja transferir:\n>>> ')
     armazemOrigem = input("Digite o armazém ORIGEM:\n>>> ")
@@ -95,6 +95,7 @@ def solicitar():
     global interromper
     interromper = False
     threading.Thread(target=verificar_esc, daemon=True).start()
+    
     stringLinha()
     codigo = input('Digite o código que deseja realizar a solicitação: ')
     numArmazem = input(f"Digite o armazém onde está localizado o código {codigo}: ")
@@ -139,10 +140,10 @@ def baixar():
     global interromper
     interromper = False
     threading.Thread(target=verificar_esc, daemon=True).start()
+    
     salvarNumSeries()
-    print("Números de série salvos com sucesso!")
     stringLinha()
-    input("Pressione Enter para iniciar a baixa.")
+    input("Pressione Enter para iniciar a baixa. Certifique-se de minimizar essa aba e selecionar a primeira célula.")
     sleep(5)
     caminho_arquivo = os.path.join(os.environ['USERPROFILE'], "Downloads", "automatizador_TOTVS-main", "src", "numeros_series.txt")
     try:
@@ -194,7 +195,7 @@ def menu():
         print("  ██║     ██║   ██║██║   ██║██╔══██║")
         print("  ███████╗╚██████╔╝╚██████╔╝██║  ██║")
         print("  ╚══════╝ ╚═════╝  ╚═════╝ ╚═╝  ╚═╝")
-        print("      Automatizador TOTVS v1.4.4        ")
+        print("      Automatizador TOTVS v1.5.3        ")
         print("       Criado por: Pierry Jonny    ")
         print("Menu:")
         print("1. Endereçamento")
