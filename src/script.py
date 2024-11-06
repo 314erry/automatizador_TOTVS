@@ -2,13 +2,13 @@ from time import sleep
 from unidecode import unidecode
 import pyautogui
 import os
+import keyboard
 
 def stringLinha():
     print('-' * 40)
 
 def enderacamento():
     salvarNumSeries()
-
     stringLinha()
     input("Pressione Enter para iniciar o endereçamento. Certifique-se de que a célula inicial está selecionada.")
     sleep(5)
@@ -17,6 +17,9 @@ def enderacamento():
         with open(caminho_arquivo, "r") as arquivo:
             series = arquivo.readlines()
             for serie in series:
+                if keyboard.is_pressed("esc"):
+                    print("Processo interrompido pelo usuário.")
+                    return
                 pyautogui.press('enter')
                 pyautogui.write(serie.strip())
                 pyautogui.press('enter')
@@ -34,19 +37,9 @@ def enderacamento():
 
 def transferenciaMultipla():
     stringLinha()
-    codigoONU = input('Digite o código da ONU que deseja transferir:\n'
-                      '010716 = ONU FIBERHOME GPON HG6143D 5G + WIFI - REUSO\n'
-                      '010717 = ONU FIBERHOME GPON HG6143D3  5G + WIFI - REUSO\n' 
-                      '010718 = ONU FIBERHOME GPON HG6145D2 REUSO\n' 
-                      '010720 = ONU HUAWEI 5.8 REF: 50083734 HW EG8145V5 - REUSO\n'
-                      '000219 = APARELHO ONU - 4FE + 2FXS+ WIF\n'
-                      'Você pode digitar um dos códigos acima ou outro.'
-                      '>>> ')
-    stringLinha()
-    armazemOrigem = input("Digite o armazém ORIGEM:\n80 = Cancelamento\n72 = Danificado\nVocê pode digitar um dos armazéns acima ou outro.\n>>> ")
-    stringLinha()
-    armazemDestino = input("Digite o armazém DESTINO:\n01 = Almoxarifado LOGA\n10 = Defeito\nVocê pode digitar um dos armazéns acima ou outro.\n>>> ")
-
+    codigoONU = input('Digite o código da ONU que deseja transferir:\n>>> ')
+    armazemOrigem = input("Digite o armazém ORIGEM:\n>>> ")
+    armazemDestino = input("Digite o armazém DESTINO:\n>>> ")
     try:
         input("Pressione Enter para iniciar a transferência automática. Certifique-se de minimizar essa aba e selecionar a célula inicial.")
         sleep(5)
@@ -54,6 +47,9 @@ def transferenciaMultipla():
         with open(caminho_arquivo, "r") as arquivo:
             series = arquivo.readlines()
             for serie in series:
+                if keyboard.is_pressed("esc"):
+                    print("Processo interrompido pelo usuário.")
+                    return
                 pyautogui.write(codigoONU)
                 pyautogui.press('down')
                 sleep(0.7)
@@ -84,11 +80,13 @@ def solicitar():
     numArmazem = input(f"Digite o armazém onde está localizado o código {codigo}: ")
     descSolicit = input('Digite a descrição da sua solicitação: ')
     stringLinha()
-
-    input("Pressione Enter para iniciar o processo de solicitação automática. Certifique-se de que a célula inicial está selecionada.")
+    input("Pressione Enter para iniciar o processo de solicitação automática.")
     sleep(5)
     i = 0
     while i < 10:
+        if keyboard.is_pressed("esc"):
+            print("Processo interrompido pelo usuário.")
+            return
         try:
             pyautogui.press('right')
             pyautogui.press('enter')
@@ -120,17 +118,18 @@ def solicitar():
     
 def baixar():
     salvarNumSeries()
-        
     print("Números de série salvos com sucesso!")
     stringLinha()
-    
-    input("Pressione Enter para iniciar a baixa. Certifique-se de que a célula 'Num de Serie' está selecionada.")
+    input("Pressione Enter para iniciar a baixa.")
     sleep(5)
     caminho_arquivo = os.path.join(os.environ['USERPROFILE'], "Downloads", "automatizador_TOTVS-main", "src", "numeros_series.txt")
     try:
         with open(caminho_arquivo, "r") as arquivo:
             series = arquivo.readlines()
             for serie in series:
+                if keyboard.is_pressed("esc"):
+                    print("Processo interrompido pelo usuário.")
+                    return
                 pyautogui.press('enter')
                 pyautogui.write(serie.strip())
                 pyautogui.press('enter')
@@ -142,42 +141,11 @@ def baixar():
         print("Erro:", e)
         
     print("Baixas realizadas com sucesso!")
-    
-def salvarNumSeries():
-    stringLinha()
-    print("Digite os novos números de série para salvar:")
-    print("(Apenas 1 nº de série por linha e pressione Enter duas vezes para finalizar):")
-
-    try:
-        linhas = []
-        while True:
-            linha = input()
-            if linha == "":
-                break
-            linhas.append(linha)
-
-        caminho_arquivo = os.path.join(os.environ['USERPROFILE'], "Downloads", "automatizador_TOTVS-main", "src", "numeros_series.txt")
-        with open(caminho_arquivo, "w") as arquivo:
-            arquivo.write("\n".join(linhas))
-    except Exception as e:
-        print("Erro:", e)
-        
-    print("Números de série salvos com sucesso!")
 
 def menu():
     while True:
         stringLinha()
-        print()
-        print("  ██╗      ██████╗  ██████╗  █████╗ ")
-        print("  ██║     ██╔═══██╗██╔════╝ ██╔══██╗")
-        print("  ██║     ██║   ██║██║  ███╗███████║")
-        print("  ██║     ██║   ██║██║   ██║██╔══██║")
-        print("  ███████╗╚██████╔╝╚██████╔╝██║  ██║")
-        print("  ╚══════╝ ╚═════╝  ╚═════╝ ╚═╝  ╚═╝")
-        print("      Automatizador TOTVS v1.4.3        ")
-        print("       Criado por: Pierry Jonny    ")
-        stringLinha()
-        print()
+        print("Automatizador TOTVS v1.4.3")
         print("Menu:")
         print("1. Endereçamento")
         print("2. Transferência Múltipla")
