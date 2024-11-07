@@ -11,16 +11,18 @@ O **Automatizador TOTVS** é um programa desenvolvido em Python que tem como obj
 - **Transferência Múltipla**: Facilita a transferência de códigos ONU para diferentes armazéns, automatizando as interações necessárias no TOTVS.
 - **Solicitar**: Permite a solicitação automática de baixa de ONU's no sistema TOTVS.
 - **Baixar pré-requisitos**: Facilita a baixa de números de série ONU para diferentes armazéns, escrevendo os números de série automaticamente no TOTVS.
+- **Salvar Nº de Série**: Possibilita salvar os números de série, persistindo-os em um arquivo .txt.
+- **Listar Nº de Série**: Possibilita listar os números de série salvos no arquivo .txt, caso seja necessário.
 
 ## Requisitos
 
 Para executar este programa, você precisa ter o seguinte instalado em sua máquina:
 
 - **Python 3**: [Download Python](https://www.python.org/downloads/)
-- **Bibliotecas PyAutoGUI e Unidecode**: Para instalação, execute o seguinte comando no seu terminal ou prompt de comando:
+- **Bibliotecas PyAutoGUI, Unidecode e Keyboard**: Para instalação, execute o seguinte comando no seu terminal ou prompt de comando:
 
   ```bash
-  python -m pip install pyautogui unidecode
+  python -m pip install pyautogui unidecode keyboard
 
 ## Instruções de Uso
 
@@ -35,13 +37,14 @@ Para executar este programa, você precisa ter o seguinte instalado em sua máqu
 
    Ou você pode rodar o programa clicando duas vezes no `script.py` e selecionando abrir com o Python.
 
-5. **Siga as instruções no menu**: O programa irá apresentar um menu com opções para endereçamento e transferência múltipla.
+5. **Siga as instruções no menu**: O programa irá apresentar um menu com opções para endereçamento, transferência múltipla, solicitação, baixa de pré-requisitos, salvar nº de série e listar nº de série.
 
 ## Como Funciona
 
 - O usuário pode inserir novos números de série para endereçamento.
 - O programa solicita informações sobre a transferência e baixa de ONU's, como códigos e armazéns.
 - O usuário pode salvar novos números de série no programa, persistindo os dados.
+- O usuário pode listar os números de série salvos no arquivo numeros_series.txt e mostrá-los na tela.
 - As operações são realizadas automaticamente, permitindo que o usuário minimize a janela e prepare-se para o próximo passo.
 
 ## Licença
