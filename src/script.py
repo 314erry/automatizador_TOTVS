@@ -2,13 +2,28 @@ from time import sleep
 from unidecode import unidecode
 import pyautogui
 import os
+import keyboard
+import threading
+
+interromper = False
+
+def verificar_esc():
+    global interromper
+    while True:
+        if keyboard.is_pressed("esc"):
+            interromper = True
+            print("\nProcesso interrompido pelo usuário.")
+            break
+        sleep(0.1)
 
 def stringLinha():
     print('-' * 40)
 
 def enderacamento():
+    global interromper
+    interromper = False
+    threading.Thread(target=verificar_esc, daemon=True).start()
     salvarNumSeries()
-
     stringLinha()
     input("Pressione Enter para iniciar o endereçamento. Certifique-se de que a célula inicial está selecionada.")
     sleep(5)
@@ -17,6 +32,8 @@ def enderacamento():
         with open(caminho_arquivo, "r") as arquivo:
             series = arquivo.readlines()
             for serie in series:
+                if interromper:
+                    return
                 pyautogui.press('enter')
                 pyautogui.write(serie.strip())
                 pyautogui.press('enter')
@@ -33,27 +50,26 @@ def enderacamento():
     print("Números de série endereçados com sucesso!")
 
 def transferenciaMultipla():
+    global interromper
+    interromper = False
+    threading.Thread(target=verificar_esc, daemon=True).start()
+    
     stringLinha()
-    codigoONU = input('Digite o código da ONU que deseja transferir:\n'
-                      '010716 = ONU FIBERHOME GPON HG6143D 5G + WIFI - REUSO\n'
-                      '010717 = ONU FIBERHOME GPON HG6143D3  5G + WIFI - REUSO\n' 
-                      '010718 = ONU FIBERHOME GPON HG6145D2 REUSO\n' 
-                      '010720 = ONU HUAWEI 5.8 REF: 50083734 HW EG8145V5 - REUSO\n'
-                      '000219 = APARELHO ONU - 4FE + 2FXS+ WIF\n'
-                      'Você pode digitar um dos códigos acima ou outro.'
-                      '>>> ')
-    stringLinha()
-    armazemOrigem = input("Digite o armazém ORIGEM:\n80 = Cancelamento\n72 = Danificado\nVocê pode digitar um dos armazéns acima ou outro.\n>>> ")
-    stringLinha()
-    armazemDestino = input("Digite o armazém DESTINO:\n01 = Almoxarifado LOGA\n10 = Defeito\nVocê pode digitar um dos armazéns acima ou outro.\n>>> ")
-
+    codigoONU = input('Digite o código da ONU que deseja transferir:\n>>> ')
+    armazemOrigem = input("Digite o armazém ORIGEM:\n>>> ")
+    armazemDestino = input("Digite o armazém DESTINO:\n>>> ")
+    caminho_arquivo = os.path.join(os.environ['USERPROFILE'], "Downloads", "automatizador_TOTVS-main", "src", "numeros_series.txt")
     try:
         input("Pressione Enter para iniciar a transferência automática. Certifique-se de minimizar essa aba e selecionar a célula inicial.")
         sleep(5)
-        caminho_arquivo = os.path.join(os.environ['USERPROFILE'], "Downloads", "automatizador_TOTVS-main", "src", "numeros_series.txt")
         with open(caminho_arquivo, "r") as arquivo:
-            series = arquivo.readlines()
+            series = [linha.strip() for linha in arquivo if linha.strip()]
+            if not series:
+                print("Salve os Nº de Série para transferir. Tente Novamente.")
+                return
             for serie in series:
+                if interromper:
+                    return
                 pyautogui.write(codigoONU)
                 pyautogui.press('down')
                 sleep(0.7)
@@ -79,16 +95,21 @@ def transferenciaMultipla():
     print("Números de série transferidos com sucesso!")
 
 def solicitar():
+    global interromper
+    interromper = False
+    threading.Thread(target=verificar_esc, daemon=True).start()
+    
     stringLinha()
     codigo = input('Digite o código que deseja realizar a solicitação: ')
     numArmazem = input(f"Digite o armazém onde está localizado o código {codigo}: ")
     descSolicit = input('Digite a descrição da sua solicitação: ')
     stringLinha()
-
-    input("Pressione Enter para iniciar o processo de solicitação automática. Certifique-se de que a célula inicial está selecionada.")
+    input("Pressione Enter para iniciar o processo de solicitação automática.")
     sleep(5)
     i = 0
     while i < 10:
+        if interromper:
+            return
         try:
             pyautogui.press('right')
             pyautogui.press('enter')
@@ -119,18 +140,21 @@ def solicitar():
     print("Solicitações realizadas com sucesso!")
     
 def baixar():
-    salvarNumSeries()
-        
-    print("Números de série salvos com sucesso!")
-    stringLinha()
+    global interromper
+    interromper = False
+    threading.Thread(target=verificar_esc, daemon=True).start()
     
-    input("Pressione Enter para iniciar a baixa. Certifique-se de que a célula 'Num de Serie' está selecionada.")
+    salvarNumSeries()
+    stringLinha()
+    input("Pressione Enter para iniciar a baixa. Certifique-se de minimizar essa aba e selecionar a primeira célula.")
     sleep(5)
     caminho_arquivo = os.path.join(os.environ['USERPROFILE'], "Downloads", "automatizador_TOTVS-main", "src", "numeros_series.txt")
     try:
         with open(caminho_arquivo, "r") as arquivo:
             series = arquivo.readlines()
             for serie in series:
+                if interromper:
+                    return
                 pyautogui.press('enter')
                 pyautogui.write(serie.strip())
                 pyautogui.press('enter')
@@ -142,7 +166,7 @@ def baixar():
         print("Erro:", e)
         
     print("Baixas realizadas com sucesso!")
-    
+
 def salvarNumSeries():
     stringLinha()
     print("Digite os novos números de série para salvar:")
@@ -156,6 +180,10 @@ def salvarNumSeries():
                 break
             linhas.append(linha)
 
+        if not linhas:
+            print("Digite os Nº de Série para salvar. Tente Novamente.")
+            return
+
         caminho_arquivo = os.path.join(os.environ['USERPROFILE'], "Downloads", "automatizador_TOTVS-main", "src", "numeros_series.txt")
         with open(caminho_arquivo, "w") as arquivo:
             arquivo.write("\n".join(linhas))
@@ -164,8 +192,23 @@ def salvarNumSeries():
         
     print("Números de série salvos com sucesso!")
 
+def listarNumSerie():
+    stringLinha()
+    caminho_arquivo = os.path.join(os.environ['USERPROFILE'], "Downloads", "automatizador_TOTVS-main", "src", "numeros_series.txt")
+    try:
+        with open(caminho_arquivo, "r") as arquivo:
+            series = [linha.strip() for linha in arquivo if linha.strip()]
+            if not series:
+                print("Não há nenhum Nº de Série salvo.")
+            else:
+                print("\nNúmeros de Série no arquivo:")
+                for serie in series:
+                    print(serie.strip())
+    except Exception as e:
+        print("Erro ao listar números de série:", e)
+
 def menu():
-    while True:
+    while True:    
         stringLinha()
         print()
         print("  ██╗      ██████╗  ██████╗  █████╗ ")
@@ -183,6 +226,7 @@ def menu():
         print("3. Solicitar")
         print("4. Baixar Pré-Requisitos")
         print("5. Salvar Nº Série")
+        print("6. Listar Nº Série")
         print("0. Sair")
         opcao = input("Escolha uma opção: ")
 
@@ -196,8 +240,9 @@ def menu():
             baixar()
         elif opcao == "5":
             salvarNumSeries()
+        elif opcao == "6":
+            listarNumSerie()
         elif opcao == "0":
-            print("Saindo...")
             break
         else:
             print("Opção inválida. Tente novamente.")
