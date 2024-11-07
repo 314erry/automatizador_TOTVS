@@ -1,4 +1,3 @@
-
 # Automatizador TOTVS
 
 ## Descrição
@@ -13,6 +12,7 @@ O **Automatizador TOTVS** é um programa desenvolvido em Python que tem como obj
 - **Baixar pré-requisitos**: Facilita a baixa de números de série ONU para diferentes armazéns, escrevendo os números de série automaticamente no TOTVS.
 - **Salvar Nº de Série**: Possibilita salvar os números de série, persistindo-os em um arquivo .txt.
 - **Listar Nº de Série**: Possibilita listar os números de série salvos no arquivo .txt, caso seja necessário.
+- **Interromper processo automático**: Permite interromper um processo qualquer onde há a automatização de algum processo ao apertar a tecla "esc".
 
 ## Requisitos
 
@@ -46,6 +46,7 @@ Para executar este programa, você precisa ter o seguinte instalado em sua máqu
 - O usuário pode salvar novos números de série no programa, persistindo os dados.
 - O usuário pode listar os números de série salvos no arquivo numeros_series.txt e mostrá-los na tela.
 - As operações são realizadas automaticamente, permitindo que o usuário minimize a janela e prepare-se para o próximo passo.
+- O usuário pode interromper um processo apertando a tecla "esc", fazer isso no início de uma iteração do loop fará com que ele pare e volte para o menu inicial.
 
 ## Licença
 
