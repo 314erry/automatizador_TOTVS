@@ -176,7 +176,6 @@ def menu():
         print("  ╚══════╝ ╚═════╝  ╚═════╝ ╚═╝  ╚═╝")
         print("      Automatizador TOTVS v1.6.4        ")
         print("         © 2024 Pierry Jonny    ")
-        stringLinha()
         print()
         print("Menu:")
         print("1. Endereçamento")
