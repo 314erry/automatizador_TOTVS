@@ -28,7 +28,7 @@ Para executar este programa, você precisa ter o seguinte instalado em sua máqu
 
 1. **Baixe o repositório**: Clone ou baixe o repositório que contém o código.
 2. **Descompacte o arquivo**: Caso o repositório esteja compactado, descompacte-o.
-3. **Certifique-se do nome da pastas**: Caso a pasta descompactada tenha outro nome além de "automatizador_TOVS-main", certifique-se de alterar o nome da pasta para a mesma mencionada.
+3. **Certifique-se do nome da pasta**: Caso a pasta descompactada tenha outro nome além de "automatizador_TOVS-main", certifique-se de alterar o nome da pasta para a mesma mencionada.
 4. **Navegue até a pasta**: Acesse a pasta `src` onde o arquivo `script.py` está localizado.
 5. **Execute o programa**: No terminal ou prompt de comando, execute o seguinte comando para iniciar o programa:
 
