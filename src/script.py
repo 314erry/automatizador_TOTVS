@@ -103,11 +103,20 @@ def solicitar():
     codigo = input('Digite o código que deseja realizar a solicitação: ')
     numArmazem = input(f"Digite o armazém onde está localizado o código {codigo}: ")
     descSolicit = input('Digite a descrição da sua solicitação: ')
+    try:
+        quantidade = int(input("Digite a quantidade de solicitações que deseja realizar: "))
+        if quantidade <= 0:
+            print("Quantidade inválida. Tente novamente.")
+            return
+    except ValueError:
+        print("Entrada inválida. Digite um número inteiro para a quantidade.")
+        return
+
     stringLinha()
     input("Pressione Enter para iniciar o processo de solicitação automática.")
     sleep(5)
     i = 0
-    while i < 10:
+    while i < quantidade:
         if interromper:
             return
         try:
@@ -137,7 +146,7 @@ def solicitar():
             print("Erro:", e)
         i += 1
             
-    print("Solicitações realizadas com sucesso!")
+    print(f"{quantidade} solicitações realizadas com sucesso!")
     
 def baixar():
     global interromper
