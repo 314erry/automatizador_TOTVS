@@ -50,7 +50,6 @@ def enderacamento():
     print("Números de série endereçados com sucesso!")
 
 def obter_configuracoes():
-    """Get configurations for multiple transfers."""
     configuracoes = []
     while True:
         codigo = input('Digite o código da ONU que deseja transferir (ou "sair" para finalizar):\n>>> ')
@@ -71,7 +70,6 @@ def obter_configuracoes():
     return configuracoes
 
 def ler_series(caminho_arquivo, quantidade, offset):
-    """Read the serial numbers from the file starting at a specific offset up to the specified quantity."""
     try:
         with open(caminho_arquivo, "r") as arquivo:
             series = [linha.strip() for linha in arquivo if linha.strip()]
@@ -83,7 +81,6 @@ def ler_series(caminho_arquivo, quantidade, offset):
         return []
 
 def processar_transferencia(series, codigo, armazem_origem, armazem_destino):
-    """Automate the transfer process using pyautogui."""
     for serie in series:
         if interromper:
             print("Transferência interrompida.")
@@ -112,13 +109,13 @@ def processar_transferencia(series, codigo, armazem_origem, armazem_destino):
             print(f"Erro durante o processamento da série {serie}: {e}")
 
 def transferenciaMultipla():
-    """Main function to handle single or multiple code transfers."""
     global interromper
     interromper = False
     threading.Thread(target=verificar_esc, daemon=True).start()
 
     caminho_arquivo = os.path.join(os.environ['USERPROFILE'], "Downloads", "automatizador_TOTVS-main", "src", "numeros_series.txt")
 
+    stringLinha()
     escolha = input("Digite '1' para transferência única ou '2' para transferência múltipla:\n>>> ")
 
     if escolha == '1':
@@ -134,6 +131,7 @@ def transferenciaMultipla():
         except Exception as e:
             print(f"Erro na transferência única: {e}")
     elif escolha == '2':
+        stringLinha()
         configuracoes = obter_configuracoes()
         offset = 0
         try:
