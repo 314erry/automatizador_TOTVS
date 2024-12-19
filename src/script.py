@@ -52,6 +52,7 @@ def enderacamento():
 def obter_configuracoes():
     configuracoes = []
     while True:
+        stringLinha()
         codigo = input('Digite o código da ONU que deseja transferir (ou "sair" para finalizar):\n>>> ')
         if codigo.lower() == 'sair':
             break
@@ -131,7 +132,6 @@ def transferenciaMultipla():
         except Exception as e:
             print(f"Erro na transferência única: {e}")
     elif escolha == '2':
-        stringLinha()
         configuracoes = obter_configuracoes()
         offset = 0
         try:
