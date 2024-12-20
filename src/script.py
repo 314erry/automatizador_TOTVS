@@ -132,7 +132,6 @@ def transferenciaMultipla():
         except Exception as e:
             print(f"Erro na transferência única: {e}")
     elif escolha == '2':
-        stringLinha()
         configuracoes = obter_configuracoes()
         offset = 0
         try:
