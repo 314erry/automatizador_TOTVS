@@ -54,7 +54,7 @@ def obter_configuracoes():
     while True:
         stringLinha()
         codigo = input("Digite o código da ONU que deseja transferir (ou 'sair' para finalizar):\n>>> ")
-        if codigo.lower() == 'sair':
+        if codigo.lower().strip() == 'sair':
             break
         try:
             quantidade = int(input(f"Digite a quantidade para o código {codigo}:\n>>> "))
