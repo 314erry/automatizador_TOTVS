@@ -116,7 +116,7 @@ def transferenciaMultipla():
 
     caminho_arquivo = os.path.join(os.environ['USERPROFILE'], "Downloads", "automatizador_TOTVS-main", "src", "numeros_series.txt")
 
-    stringLinha()
+    stringLinh()
     escolha = input("Digite '1' para transferência única ou '2' para transferência múltipla:\n>>> ")
 
     if escolha == '1':
