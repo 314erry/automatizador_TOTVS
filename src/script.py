@@ -5,6 +5,8 @@ import os
 import keyboard
 import threading
 
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+NUMEROS_SERIES_PATH = os.path.join(BASE_DIR, "numeros_series.txt")
 interromper = False
 
 def verificar_esc():
@@ -27,9 +29,13 @@ def enderacamento():
     stringLinha()
     input("Pressione Enter para iniciar o endereçamento. Certifique-se de que a célula inicial está selecionada.")
     sleep(5)
-    caminho_arquivo = os.path.join(os.environ['USERPROFILE'], "Downloads", "automatizador_TOTVS-main", "src", "numeros_series.txt")
+    
+    if not os.path.exists(NUMEROS_SERIES_PATH):
+        print(f"Erro: O arquivo 'numeros_series.txt' não foi encontrado na pasta '{BASE_DIR}'.")
+        return
+
     try:
-        with open(caminho_arquivo, "r") as arquivo:
+        with open(NUMEROS_SERIES_PATH, "r") as arquivo:
             series = arquivo.readlines()
             for serie in series:
                 if interromper:
@@ -114,7 +120,9 @@ def transferenciaMultipla():
     interromper = False
     threading.Thread(target=verificar_esc, daemon=True).start()
 
-    caminho_arquivo = os.path.join(os.environ['USERPROFILE'], "Downloads", "automatizador_TOTVS-main", "src", "numeros_series.txt")
+    if not os.path.exists(NUMEROS_SERIES_PATH):
+        print(f"Erro: O arquivo 'numeros_series.txt' não foi encontrado na pasta '{BASE_DIR}'.")
+        return
 
     stringLinha()
     escolha = input("Digite '1' para transferência única ou '2' para transferência múltipla:\n>>> ")
@@ -127,7 +135,7 @@ def transferenciaMultipla():
         try:
             input("Pressione Enter para iniciar a transferência automática. Certifique-se de minimizar essa aba e selecionar a célula inicial.")
             sleep(5)
-            series = ler_series(caminho_arquivo, quantidade=9999, offset=0)
+            series = ler_series(NUMEROS_SERIES_PATH, quantidade=9999, offset=0)
             processar_transferencia(series, codigo, armazem_origem, armazem_destino)
         except Exception as e:
             print(f"Erro na transferência única: {e}")
@@ -138,7 +146,7 @@ def transferenciaMultipla():
             input("Pressione Enter para iniciar a transferência automática. Certifique-se de minimizar essa aba e selecionar a célula inicial.")
             sleep(5)
             for config in configuracoes:
-                series = ler_series(caminho_arquivo, config['quantidade'], offset)
+                series = ler_series(NUMEROS_SERIES_PATH, config['quantidade'], offset)
                 if not series:
                     print(f"Séries insuficientes para o código {config['codigo']}.")
                     continue
@@ -214,9 +222,13 @@ def baixar():
     stringLinha()
     input("Pressione Enter para iniciar a baixa. Certifique-se de minimizar essa aba e selecionar a primeira célula.")
     sleep(5)
-    caminho_arquivo = os.path.join(os.environ['USERPROFILE'], "Downloads", "automatizador_TOTVS-main", "src", "numeros_series.txt")
+
+    if not os.path.exists(NUMEROS_SERIES_PATH):
+        print(f"Erro: O arquivo 'numeros_series.txt' não foi encontrado na pasta '{BASE_DIR}'.")
+        return
+
     try:
-        with open(caminho_arquivo, "r") as arquivo:
+        with open(NUMEROS_SERIES_PATH, "r") as arquivo:
             series = arquivo.readlines()
             for serie in series:
                 if interromper:
@@ -250,8 +262,7 @@ def salvarNumSeries():
             print("Digite os Nº de Série para salvar. Tente Novamente.")
             return
 
-        caminho_arquivo = os.path.join(os.environ['USERPROFILE'], "Downloads", "automatizador_TOTVS-main", "src", "numeros_series.txt")
-        with open(caminho_arquivo, "w") as arquivo:
+        with open(NUMEROS_SERIES_PATH, "w") as arquivo:
             arquivo.write("\n".join(linhas))
     except Exception as e:
         print("Erro:", e)
@@ -260,9 +271,11 @@ def salvarNumSeries():
 
 def listarNumSerie():
     stringLinha()
-    caminho_arquivo = os.path.join(os.environ['USERPROFILE'], "Downloads", "automatizador_TOTVS-main", "src", "numeros_series.txt")
+    if not os.path.exists(NUMEROS_SERIES_PATH):
+        print(f"Erro: O arquivo 'numeros_series.txt' não foi encontrado na pasta '{BASE_DIR}'.")
+        return
     try:
-        with open(caminho_arquivo, "r") as arquivo:
+        with open(NUMEROS_SERIES_PATH, "r") as arquivo:
             series = [linha.strip() for linha in arquivo if linha.strip()]
             if not series:
                 print("Não há nenhum Nº de Série salvo.")
@@ -283,8 +296,8 @@ def menu():
         print("  ██║     ██║   ██║██║   ██║██╔══██║")
         print("  ███████╗╚██████╔╝╚██████╔╝██║  ██║")
         print("  ╚══════╝ ╚═════╝  ╚═════╝ ╚═╝  ╚═╝")
-        print("      Automatizador TOTVS v1.8.4        ")
-        print("         © 2024 Pierry Jonny    ")
+        print("      Automatizador TOTVS v1.8.4")
+        print("         © 2024 Pierry Jonny")
         print()
         print("Menu:")
         print("1. Endereçamento")
