@@ -296,7 +296,7 @@ def menu():
         print("  ██║     ██║   ██║██║   ██║██╔══██║")
         print("  ███████╗╚██████╔╝╚██████╔╝██║  ██║")
         print("  ╚══════╝ ╚═════╝  ╚═════╝ ╚═╝  ╚═╝")
-        print("      Automatizador TOTVS v1.8.4")
+        print("      Automatizador TOTVS v1.9.4")
         print("         © 2024 Pierry Jonny")
         print()
         print("Menu:")
