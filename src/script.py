@@ -25,7 +25,6 @@ def enderacamento():
     global interromper
     interromper = False
     threading.Thread(target=verificar_esc, daemon=True).start()
-    salvarNumSeries()
     stringLinha()
     input("Pressione Enter para iniciar o endereçamento. Certifique-se de que a célula inicial está selecionada.")
     sleep(5)
@@ -33,7 +32,7 @@ def enderacamento():
     if not os.path.exists(NUMEROS_SERIES_PATH):
         print(f"Erro: O arquivo 'numeros_series.txt' não foi encontrado na pasta '{BASE_DIR}'.")
         return
-
+        
     try:
         with open(NUMEROS_SERIES_PATH, "r") as arquivo:
             series = arquivo.readlines()
@@ -41,15 +40,20 @@ def enderacamento():
                 if interromper:
                     return
                 pyautogui.press('enter')
+                sleep(0.5)
                 pyautogui.write(serie.strip())
                 pyautogui.press('enter')
-                sleep(0.7)
+                sleep(0.5)
                 pyautogui.write("1")
                 sleep(0.7)
-                pyautogui.press('down', presses=2)
+                pyautogui.press('down')
                 sleep(0.7)
-                pyautogui.press('right', presses=3)
-                sleep(0.7)
+                pyautogui.press('down')
+                sleep(0.5)
+                pyautogui.press('right')
+                pyautogui.press('right')
+                pyautogui.press('right')
+                sleep(0.5)
     except Exception as e:
         print("Erro:", e)
     
@@ -93,24 +97,38 @@ def processar_transferencia(series, codigo, armazem_origem, armazem_destino):
             print("Transferência interrompida.")
             return
         try:
+            pyautogui.press('enter')
+            sleep(0.7)
             pyautogui.write(codigo)
-            pyautogui.press('down')
-            sleep(0.7)
-            pyautogui.press('right', presses=2)
-            pyautogui.write(armazem_origem)
-            sleep(0.7)
-            pyautogui.press('right', presses=4)
-            pyautogui.write(armazem_destino)
+            pyautogui.press('enter')
             sleep(0.7)
             pyautogui.press('right')
+            pyautogui.press('right')
+            sleep(0.7)
+            pyautogui.write(armazem_origem, interval=0.30)
+            sleep(0.7)
+            pyautogui.press('right')
+            pyautogui.press('right')
+            pyautogui.press('right')
+            pyautogui.press('right')
+            sleep(0.7)
+            pyautogui.write(armazem_destino, interval=0.30)
+            sleep(0.5)
+            pyautogui.press('right')
             pyautogui.press('enter')
+            sleep(0.5)
             pyautogui.write(serie)
             pyautogui.press('enter')
             sleep(0.7)
-            pyautogui.press('right', presses=4)
+            pyautogui.press('right')
+            pyautogui.press('right')
+            pyautogui.press('right')
+            pyautogui.press('right')
             pyautogui.write("1")
-            sleep(0.7)
-            pyautogui.press('down', presses=2)
+            sleep(0.5)
+            pyautogui.press('down')
+            sleep(0.5)
+            pyautogui.press('down')
             sleep(0.7)
         except Exception as e:
             print(f"Erro durante o processamento da série {serie}: {e}")
@@ -186,25 +204,33 @@ def solicitar():
             return
         try:
             pyautogui.press('right')
+            sleep(0.1)
             pyautogui.press('enter')
+            sleep(0.3)
             pyautogui.write(str(codigo))
             pyautogui.press('enter')
             sleep(0.7)
             pyautogui.press('right')
-            pyautogui.write(str(numArmazem))
+            pyautogui.write(str(numArmazem), interval=0.20)
             sleep(0.7)
             pyautogui.press('right')
             pyautogui.write('1')
+            sleep(0.3)
             pyautogui.press('down')
             sleep(0.7)
-            pyautogui.press('right', presses=3)
-            pyautogui.write('0101004')
+            pyautogui.press('right')
+            pyautogui.press('right')
+            pyautogui.press('right')
+            pyautogui.write('0101004', interval=0.20)
             sleep(0.7)
             pyautogui.press('down')
+            sleep(0.3)
             pyautogui.press('enter')
-            pyautogui.write(unidecode(descSolicit.strip().upper()))
-            sleep(0.7)
+            sleep(0.3)
+            pyautogui.write(descSolicit, interval=0.20)
+            sleep(0.5)
             pyautogui.press('enter')
+            sleep(0.3)
             pyautogui.press('down')
             sleep(0.7)
         except Exception as e:
@@ -217,10 +243,9 @@ def baixar():
     global interromper
     interromper = False
     threading.Thread(target=verificar_esc, daemon=True).start()
-    
-    salvarNumSeries()
+
     stringLinha()
-    input("Pressione Enter para iniciar a baixa. Certifique-se de minimizar essa aba e selecionar a primeira célula.")
+    input("Pressione Enter para iniciar a baixa. Certifique-se de minimizar essa aba e selecionar a célula 'Número de Série'.")
     sleep(5)
 
     if not os.path.exists(NUMEROS_SERIES_PATH):
@@ -234,10 +259,13 @@ def baixar():
                 if interromper:
                     return
                 pyautogui.press('enter')
+                sleep(0.3)
                 pyautogui.write(serie.strip())
+                sleep(0.3)
                 pyautogui.press('enter')
                 sleep(0.7)
                 pyautogui.press('down')
+                sleep(0.3)
                 pyautogui.press('left')
                 sleep(0.7)
     except Exception as e:
